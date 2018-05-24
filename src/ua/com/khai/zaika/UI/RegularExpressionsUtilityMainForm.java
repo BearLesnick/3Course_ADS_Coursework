@@ -10,6 +10,9 @@ import ua.com.khai.zaika.services.ServicesLoader.ServicesLoadeFactory.implementa
 import ua.com.khai.zaika.services.ServicesLoader.ServicesLoadeFactory.interfaces.ServicesLoaderFactory;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.regex.PatternSyntaxException;
@@ -69,6 +72,8 @@ public class RegularExpressionsUtilityMainForm implements Initializable {
 
     @FXML
     void onTextSave() {
+
+
     }
 
     @FXML
