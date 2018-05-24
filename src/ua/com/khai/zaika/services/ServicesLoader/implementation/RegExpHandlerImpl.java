@@ -19,7 +19,7 @@ public class RegExpHandlerImpl implements RegExpHandler, StyleArray {
         LinkedList<Text> tokens = new LinkedList<>();
         Pattern regexp = Pattern.compile(regExpression);
         Matcher matcher = regexp.matcher(text);
-        while (matcher.find()) {
+        while (matcher.find() && regExpression.length() != 0) {
             isAnyMatches = true;
             String beforehand = text.substring(regionStarted, matcher.start());
             tokens.add(new Text(beforehand));
@@ -28,7 +28,7 @@ public class RegExpHandlerImpl implements RegExpHandler, StyleArray {
             regionEnded = matcher.end();
             regionStarted = regionEnded;
             int count = matcher.groupCount();
-            if (count == 0) {//if it is no groups splited
+            if (count == 0) {//if it is no groups splitted
                 Text token = new Text();
                 token.setFill(Paint.valueOf(styles[0]));
                 token.setText(matcher.group());

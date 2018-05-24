@@ -9,10 +9,8 @@ public class BinarySerializerImpl implements BinarySerializer {
     @Override
     public boolean saveText(String text, File file) {
         try {
-            if(!file.createNewFile())
-            {
-                throw new IOException("Can not create file");
-            }
+            file.createNewFile();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -27,10 +25,7 @@ public class BinarySerializerImpl implements BinarySerializer {
     @Override
     public boolean saveRegExp(String text, File file) {
         try {
-            if(!file.createNewFile())
-            {
-             throw new IOException("Can not create file");
-            }
+            file.createNewFile();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -45,21 +40,16 @@ public class BinarySerializerImpl implements BinarySerializer {
     @Override
     public String loadRegExp(File file) {
 
-        try ( InputStream in = new FileInputStream(file)){
+        try (InputStream in = new FileInputStream(file)) {
             ObjectInputStream out = new ObjectInputStream(in);
             return (String) out.readObject();
-        }
-        catch ( ClassNotFoundException e )
-        {
+        } catch (StreamCorruptedException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Data file was crashed, data recovery is not possible");
             alert.show();
             return "";
-        }
-        catch (FileNotFoundException e)
-        {
+        } catch (FileNotFoundException e) {
             return "";
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage());
             alert.show();
             return "";
